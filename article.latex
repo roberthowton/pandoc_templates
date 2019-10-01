@@ -1,0 +1,217 @@
+
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[12pt,twoside,a4paper]{article}
+
+\newcommand\papertitle{$title$}
+\newcommand\papersubtitle{$subtitle$}
+
+\usepackage{amssymb}
+\usepackage{amstext}
+%\usepackage[style=authoryear-comp, url=false,doi=false,isbn=false, giveninits=true,uniquename=init,backend=biber,sortcites=true,hyperref=true]{biblatex}
+%	\renewcommand*{\postnotedelim}{\addcolon\space}
+%	\renewbibmacro{in:}{}
+%	\DeclareFieldFormat{postnote}{#1}
+%	\DeclareFieldFormat{multipostnote}{#1}
+%	\DeclareFieldFormat{pages}{#1}
+%	\renewcommand{\multicitedelim}{\addcomma\space}
+%	\renewcommand{\compcitedelim}{\addcomma\space}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{csquotes}
+\usepackage{emptypage}
+\usepackage{enumitem}
+\usepackage[shortcuts]{extdash}
+\usepackage{fancyhdr}
+\usepackage{fontspec}
+\usepackage{float}
+\usepackage[bottom,norule,splitrule,multiple]{footmisc}
+\usepackage{framed}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{ifdraft}
+\usepackage{lscape}
+\usepackage{mathptmx}
+% \usepackage{multicol}
+\usepackage{microtype}
+\usepackage{multirow}
+\usepackage{nameref}
+\usepackage[super]{nth}
+\usepackage{pifont}
+\usepackage{polyglossia}
+	\setdefaultlanguage[variant=usmax,ordinalmonthday]{english}
+	\setotherlanguage[variant=ancient]{greek}
+\usepackage{rotfloat}
+\usepackage{setspace}
+\usepackage{subfigure}
+% \usepackage{texlive-most}
+\usepackage{textcomp}
+\usepackage{textcase}
+\usepackage[compact]{titlesec}
+\usepackage{titling}
+\usepackage[normalem]{ulem}
+\usepackage{verbatim}
+\usepackage{wrapfig}
+\usepackage{xcolor}
+\usepackage{xltxtra}
+\usepackage{xunicode}
+
+%\hypersetup{
+%	colorlinks,
+%	linkcolor={black},
+%	citecolor={black},
+%	urlcolor={blue!80!black}
+%}
+
+\usepackage[style=philosophy-classic,backend=biber,giveninits=true,sortcites=true,hyperref=true,uniquename=init,url=false,doi=false,isbn=false]{biblatex}
+
+
+\usepackage[xspace,chicago]{ellipsis}
+%	\renewcommand{\ellipsisgap}{.1em}
+
+%%% Drawing packages %%%
+	\usepackage{rotating}
+	\usepackage{tikz}
+			\usetikzlibrary{shapes,arrows,shadows,fit,positioning,arrows.meta}
+			\usetikzlibrary{decorations.pathreplacing,fadings,patterns,fit}
+	\usepackage[usenames,dvipsnames]{pstricks}
+	\usepackage{epsfig}
+	\usepackage{pst-grad} % For gradients
+	\usepackage{pst-plot} % For axes
+	\usepackage{graphicx}
+
+%\hypersetup{
+%	pdftitle={},
+%	pdfauthor={},
+%	pdfsubject={Aristotle},
+%	pdfkeywords={Aristotle} {Perception} {Epistemology} {Knowledge} {Philosophy of Mind} {Learning Theory} {Empiricism},
+%	pdfcreator={XeLaTeX},
+%	pdfproducer={XeLaTeX},
+%	pdfmenubar=true,		% show Acrobat’s menu?
+%	pdffitwindow=true,	% window fit to page when opened
+%	pdfstartview={FitH},	% fits the width of the page to the window
+%	pdfnewwindow=true,	% links in new window
+%	colorlinks=true,		% false: boxed links; true: colored links
+%	linkcolor=black,		% color of internal links
+%	citecolor=black,		% color of links to bibliography
+%	filecolor=black,		% color of file links
+%	urlcolor=black		% color of external links
+%}
+
+\usepackage{longtable}
+% \usepackage[parfill]{parskip}
+
+
+%%% Page Margins %%%
+	\usepackage{geometry}
+	\geometry{verbose,margin=35.6mm}
+	\raggedbottom
+	%\usepackage[letterpaper,hmargin=2.09in,vmargin=1.8in]{geometry}
+
+%%% Line Spacing (\singlespacing, \onehalfspacing, \doublespacing) %%%
+	\renewcommand{\baselinestretch}{1.2}
+
+%%% Primary Font %%%
+%\setmainfont[Mapping=tex-text,RawFeature=+onum;+pnum]{Linux Libertine O}
+
+\setmainfont[%
+		Mapping = {tex-text},
+		Numbers = {OldStyle},
+		SmallCapsFeatures = {
+    	Letters = SmallCaps,
+    	LetterSpace = 5,
+  		}%
+		]{Minion Pro}
+\newfontfamily\greekfont{GFS Porson}
+
+%%% Page Headers %%%
+\pagestyle{fancy}
+\headsep=12pt
+\headheight=15pt
+%\fancyhead[LE]{\thepage\hspace{1 cm}\textsc{\MakeTextLowercase{\papertitle}}}
+\fancyhead[LE]{}
+% \fancyhead[CE]{\papertitle}
+%\fancyhead[RO]{\textsc{\nouppercase{\MakeTextLowercase{\leftmark}}}\hspace{1 cm}\thepage}
+\fancyhead[RO]{}
+\fancyhead[CO,CE]{\itshape\papertitle}
+\fancyhead[LO]{}
+\fancyhead[RE]{}
+\fancyfoot[CO,CE]{\thepage}
+
+\renewcommand{\headrulewidth}{0 pt}
+
+\fancypagestyle{firstpage}{
+	\lhead{}
+	\rhead{}
+	\chead{}
+%	\headsep=1.5em
+%	\headheight=15pt
+% \lfoot{Page~\thepage}
+\cfoot{\thepage}
+\rfoot{}
+	}
+
+
+
+%%%% add \MakeUppercase to pretitle if needed
+
+\pretitle{\flushleft\LARGE\bfseries}
+	\title{\papertitle
+	$if(subtitle)$
+	: $subtitle$
+	$endif$
+	}
+	\posttitle{\vskip 1em}
+\preauthor{\flushleft\normalsize}
+	\author{$for(author)$
+  $author$
+  $sep$;
+  $endfor$
+	}
+	\postauthor{\vskip -1em}
+\predate{\flushleft}
+	\date{$date$}
+	\postdate{}
+
+% \titleformat{\section}
+% {\normalfont\normalsize\bfseries\scshape\centering}{\thesection}{.5em}{\MakeTextLowercase}
+% % \renewcommand \thesection{\roman{section}}
+%
+%
+% \titleformat{\subsection}
+% {\normalfont\normalsize\itshape}{\thesubsection}{1em}{}
+%
+% \titleformat{\subsubsection}
+% {\normalfont\normalsize}{\thesubsubsection}{1em}{}
+
+%%% Table Padding
+\renewcommand{\arraystretch}{1.2}
+
+
+%%% Framed package settings %%%
+\definecolor{shadecolor}{gray}{0.95}
+
+% \def\tightlist{}
+\renewcommand{\labelitemi}{--}
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+% \renewcommand{\section}{\section*}
+
+\newcommand\ie{\emph{i.~e.}}
+\newcommand\eg{\emph{e.~g.}}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{firstpage}
+
+$if(abstract)$
+\begin{abstract}
+ \emph{$abstract$}
+\end{abstract}
+$endif$
+
+\noindent $body$
+
+\end{document}
