@@ -2,7 +2,8 @@
 %!TEX TS-program = xelatex
 %!TEX encoding = UTF-8 Unicode
 
-\documentclass[12pt,twoside,a4paper]{article}
+\documentclass[$fontsize$,twoside,$papersize$]{article}
+
 
 \newcommand\papertitle{$title$}
 \newcommand\papersubtitle{$subtitle$}
@@ -110,7 +111,7 @@
 	%\usepackage[letterpaper,hmargin=2.09in,vmargin=1.8in]{geometry}
 
 %%% Line Spacing (\singlespacing, \onehalfspacing, \doublespacing) %%%
-	\renewcommand{\baselinestretch}{1.2}
+	\renewcommand{\baselinestretch}{$linespacing$}
 
 %%% Primary Font %%%
 %\setmainfont[Mapping=tex-text,RawFeature=+onum;+pnum]{Linux Libertine O}
@@ -122,7 +123,7 @@
     	Letters = SmallCaps,
     	LetterSpace = 5,
   		}%
-		]{Minion Pro}
+		]{Linux Libertine}
 \newfontfamily\greekfont{GFS Porson}
 
 %%% Page Headers %%%
@@ -130,14 +131,12 @@
 \headsep=12pt
 \headheight=15pt
 %\fancyhead[LE]{\thepage\hspace{1 cm}\textsc{\MakeTextLowercase{\papertitle}}}
-\fancyhead[LE]{}
 % \fancyhead[CE]{\papertitle}
 %\fancyhead[RO]{\textsc{\nouppercase{\MakeTextLowercase{\leftmark}}}\hspace{1 cm}\thepage}
-\fancyhead[RO]{}
 \fancyhead[CO,CE]{\itshape\papertitle}
-\fancyhead[LO]{}
-\fancyhead[RE]{}
-\fancyfoot[CO,CE]{\thepage}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE,LO]{}
+\fancyfoot[CO,CE]{}
 
 \renewcommand{\headrulewidth}{0 pt}
 
@@ -152,42 +151,65 @@
 \rfoot{}
 	}
 
-
-
 %%%% add \MakeUppercase to pretitle if needed
 
-\pretitle{\flushleft\LARGE\bfseries}
-	\title{\papertitle
+\pretitle{\begin{center}\LARGE}
+	\title{\MakeUppercase{\papertitle}
 	$if(subtitle)$
-	: $subtitle$
+	: \MakeUppercase{$subtitle$}
 	$endif$
 	}
-	\posttitle{\vskip 1em}
-\preauthor{\flushleft\normalsize}
-	\author{$for(author)$
+	\posttitle{\end{center}\vskip 1em}
+$if(author)$
+\preauthor{\begin{center}\normalsize}
+	\author{
+	$for(author)$
   $author$
   $sep$;
   $endfor$
 	}
-	\postauthor{\vskip -1em}
-\predate{\flushleft}
-	\date{$date$}
-	\postdate{}
+	\postauthor{\end{center}}
+$endif$
+\predate{\begin{center}}
+	\date{$if(date)$
+				$date$
+				$endif$}
+	\postdate{\end{center}\vskip -1em}
 
-% \titleformat{\section}
-% {\normalfont\normalsize\bfseries\scshape\centering}{\thesection}{.5em}{\MakeTextLowercase}
-% % \renewcommand \thesection{\roman{section}}
-%
-%
-% \titleformat{\subsection}
-% {\normalfont\normalsize\itshape}{\thesubsection}{1em}{}
-%
-% \titleformat{\subsubsection}
-% {\normalfont\normalsize}{\thesubsubsection}{1em}{}
+$if(numbersections)$
+\titleformat{\section}
+{\normalfont\normalsize\centering}{\thesection.}{.5em}{}
+
+\titleformat{\subsection}
+{\normalfont\normalsize\itshape}{\thesubsection.}{.5em}{}
+
+\titleformat{\subsubsection}
+{\normalfont\normalsize}{\thesubsubsection.}{.5em}{}{}
+$else$
+\titleformat{\section}
+{\normalfont\normalsize\centering}{}{.5em}{}
+
+\titleformat{\subsection}
+{\normalfont\normalsize\itshape}{}{.5em}{}
+
+\titleformat{\subsubsection}
+{\normalfont\normalsize}{}{.5em}{}
+$endif$
+
+% \titlespacing{\section}{0pt}{5.5ex plus 1ex minus .2ex}{1.5ex}
+\titlespacing*\section{0pt}{5.5ex plus 1ex minus .2ex}{1.5ex plus .2ex minus .2ex}
+\titlespacing*\subsection{0pt}{3ex plus .5ex minus .5ex}{1ex plus .2ex minus .2ex}
+\titlespacing*\subsubsection{0pt}{1.5ex plus .2ex minus .2ex}{1ex plus .2ex minus .2ex}
+
+%%% Redefine Quote Environment %%%
+
+\renewenvironment{quote}
+               {\list{}{\rightmargin0cm\leftmargin0cm}%
+                \item\relax\small\ignorespaces}
+               {\unskip\unskip\endlist}
 
 %%% Table Padding
-\renewcommand{\arraystretch}{1.2}
-
+% \renewcommand{\arraystretch}{1.2}
 
 %%% Framed package settings %%%
 \definecolor{shadecolor}{gray}{0.95}
@@ -198,8 +220,21 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 % \renewcommand{\section}{\section*}
 
+%%% Custom Commands %%%
+
 \newcommand\ie{\emph{i.~e.}}
 \newcommand\eg{\emph{e.~g.}}
+
+%%% Citation styles %%%
+\newcommand\acite[3]{\mbox{{#1}\textsuperscript{#2}{#3}}}
+\newcommand\ascite[2]{\mbox{\textsuperscript{#1}{#2}}}
+
+\newcommand\pcite[3]{\mbox{{#1}\textsc{#2}{#3}}}
+\newcommand\pscite[2]{\mbox{\textsc{#1}{#2}}}
+
+$for(header-includes)$
+$header-includes$
+$endfor$
 
 \begin{document}
 
@@ -208,7 +243,7 @@
 
 $if(abstract)$
 \begin{abstract}
- \emph{$abstract$}
+ $abstract$
 \end{abstract}
 $endif$
 
