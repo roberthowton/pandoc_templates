@@ -149,7 +149,8 @@
 \fancyhead[CO]{\papertitle}
 \fancyhead[LO]{}
 \fancyhead[RE]{}
-\fancyfoot[RO,RE]{\classlecture}
+% \fancyfoot[RO,RE]{\classlecture}
+\fancyfoot[RO,RE]{}
 
 \renewcommand{\headrulewidth}{0 pt}
 
@@ -161,7 +162,8 @@
 %	\headheight=15pt
 % \lfoot{Page~\thepage}
 \cfoot{\thepage}
-\rfoot{\classlecture}
+% \rfoot{\classlecture}
+\rfoot{}
 	}
 
 \fancypagestyle{firstnopage}{
@@ -229,8 +231,9 @@
 \begin{minipage}{.3\linewidth}\small
   \noindent \textbf{\normalsize Instructor}
 
-  Robert Howton\\
-  (\texttt{rhowton@ku.edu.tr})
+  $instructorname$ $if(instructoremail)$\\
+  (\texttt{$instructoremail$})
+	$endif$
   \vskip 1em
 
   \textbf{\normalsize Office Hours}
