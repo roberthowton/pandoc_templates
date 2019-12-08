@@ -30,6 +30,7 @@
 \usepackage[shortcuts]{extdash}
 \usepackage{fancyhdr}
 \usepackage{fontspec}
+	\usepackage{fontawesome5}
 \usepackage{float}
 \usepackage[bottom,norule,splitrule,multiple]{footmisc}
 \usepackage{framed}
