@@ -200,22 +200,18 @@ $endif$
 
 $if(numbersections)$
 \titleformat{\section}
-{\normalfont\normalsize\centering}{\thesection.}{.5em}{}
-
+{\large\centering\scshape}{\thesection.}{.5em}{\MakeTextLowercase}
 \titleformat{\subsection}
-{\normalfont\normalsize\itshape}{\thesubsection.}{.5em}{}
-
+{\normalfont\normalsize\itshape}{\thesubsection.}{.5em}{}{}
 \titleformat{\subsubsection}
 {\normalfont\normalsize}{\thesubsubsection.}{.5em}{}{}
 $else$
 \titleformat{\section}
-{\normalfont\normalsize\centering}{}{.5em}{}
-
+{\large\centering\scshape}{}{.5em}{\MakeTextLowercase}
 \titleformat{\subsection}
-{\normalfont\normalsize\itshape}{}{.5em}{}
-
+{\normalfont\normalsize\itshape}{}{.5em}{}{}
 \titleformat{\subsubsection}
-{\normalfont\normalsize}{}{.5em}{}
+{\normalfont\normalsize}{}{.5em}{}{}
 $endif$
 
 % \titlespacing{\section}{0pt}{5.5ex plus 1ex minus .2ex}{1.5ex}

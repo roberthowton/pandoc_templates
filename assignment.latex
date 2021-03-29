@@ -1,16 +1,11 @@
 %!TEX TS-program = xelatex
 %!TEX encoding = UTF-8 Unicode
 
-\documentclass[12pt,twoside,a4paper]{article}
-
-\newcommand\papertitle{}
-\newcommand\subtitlecolon{:}
-\newcommand\papersubtitle{}
-\newcommand\paperauthor{Robert Howton}
-\newcommand\classlecture{$term$/$coursecode$/$assignment$}
+\documentclass[$fontsize$,twoside,$papersize$]{article}
 
 \usepackage{amssymb}
 \usepackage{amstext}
+\usepackage{array}
 %\usepackage[style=authoryear-comp, url=false,doi=false,isbn=false, giveninits=true,uniquename=init,backend=biber,sortcites=true,hyperref=true]{biblatex}
 %	\renewcommand*{\postnotedelim}{\addcolon\space}
 %	\renewbibmacro{in:}{}
@@ -31,7 +26,7 @@
 \usepackage[bottom,norule,splitrule,multiple]{footmisc}
 \usepackage{framed}
 \usepackage{graphicx}
-\usepackage{hyperref}
+\usepackage[colorlinks]{hyperref}
 \usepackage{ifdraft}
 \usepackage{lscape}
 \usepackage{mathptmx}
@@ -104,6 +99,26 @@
 \usepackage{longtable}
 % \usepackage[parfill]{parskip}
 
+$if(tables)$
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+$if(beamer)$
+\usepackage{caption}
+% Make caption package work with longtable
+\makeatletter
+\def\fnum@table{\tablename~\thetable}
+\makeatother
+$else$
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+$endif$
+$endif$
 
 %%% Page Margins %%%
 	\usepackage{geometry}
@@ -119,7 +134,7 @@
 
 \setmainfont[%
 		Mapping = {tex-text},
-		Numbers = {OldStyle},
+		% Numbers = {OldStyle},
 		SmallCapsFeatures = {
     	Letters = SmallCaps,
     	LetterSpace = 5,
@@ -193,11 +208,11 @@
 % \renewcommand \thesection{\roman{section}}
 %
 %
-% \titleformat{\subsection}
-% {\normalfont\normalsize\itshape}{\thesubsection}{1em}{}
-%
-% \titleformat{\subsubsection}
-% {\normalfont\normalsize}{\thesubsubsection}{1em}{}
+\titleformat{\subsection}
+{\normalfont\normalsize\bfseries}{}{0em}{}
+
+\titleformat{\subsubsection}
+{\normalfont\normalsize}{}{1em}{}
 
 %%% Table Padding
 \renewcommand{\arraystretch}{1.2}
